@@ -1,6 +1,7 @@
 #pragma once
 
 #include<iostream>
+#include<map>
 #include<vector>
 #include<algorithm>
 #include "order.h"
@@ -10,95 +11,105 @@ using namespace std;
 
 class OrderBook{
     public:
-    vector<Order> buyorder;
-    vector<Order> sellorder;
+  std::map<int,vector<Order>> buyorder;
+   std::map<int, vector<Order>> sellorder;
 
     void addorder(Order order)
     {
        if(order.side=="buy")
        {
-        buyorder.push_back(order);
+        buyorder[order.price].push_back(order);
        }
         else if(order.side=="sell")
         {
-        sellorder.push_back(order);
+        sellorder[order.price].push_back(order);
         }
     };
 
-    void deleteorder(int orderid)
-    {
+    // void deleteorder(int orderid)
+    // {
          
-        for(auto it = buyorder.begin(); it!=buyorder.end();++it)
-        {
-            if(orderid == it->O_ID)
-                {
-                    buyorder.erase(it);
-                }
-        }
+    //     for(auto it = buyorder.begin(); it!=buyorder.end();++it)
+    //     {
+    //         if(orderid == it->O_ID)
+    //             {
+    //                 buyorder.erase(it);
+    //             }
+    //     }
 
-        for(auto it = sellorder.begin(); it!=sellorder.end();++it)
-        {
-            if(orderid== it->O_ID)
-            {
-                    sellorder.erase(it);
-            }
-        }
-    }
-        void PrintOrder(int orderid)
-        {
-            for(auto it = buyorder.begin(); it!=buyorder.end();++it)
-            {
-                if(orderid == it->O_ID)
-                {
-                    cout<< it->O_ID;
-                    cout<< it->side;
-                    cout<< it->price;
-                    cout<< it->qty;
-                    return ;
-                }
-                else
-                {
-                cout<<"order not found!"<<endl;
-                return;
-                 }
-            }
+    //     for(auto it = sellorder.begin(); it!=sellorder.end();++it)
+    //     {
+    //         if(orderid== it->O_ID)
+    //         {
+    //                 sellorder.erase(it);
+    //         }
+    //     }
+    // }
+    //     void PrintOrder(int orderid)
+    //     {
+    //         for(auto it = buyorder.begin(); it!=buyorder.end();++it)
+    //         {
+    //             if(orderid == it->O_ID)
+    //             {
+    //                 cout<< it->O_ID;
+    //                 cout<< it->side;
+    //                 cout<< it->price;
+    //                 cout<< it->qty;
+    //                 return ;
+    //             }
+    //             else
+    //             {
+    //             cout<<"order not found!"<<endl;
+    //             return;
+    //              }
+    //         }
 
-        for(auto it = sellorder.begin(); it!=sellorder.end();++it)
-        {
-            if(orderid== it->O_ID)
-            {
-                    cout<< it->O_ID;
-                    cout<< it->side;
-                    cout<< it->price;
-                    cout<< it->qty;
-                    return;
-            }
-            else
-            {
-                cout<<"order not found!"<<endl;
-                return;
-            }
-        }
+    //     for(auto it = sellorder.begin(); it!=sellorder.end();++it)
+    //     {
+    //         if(orderid== it->O_ID)
+    //         {
+    //                 cout<< it->O_ID;
+    //                 cout<< it->side;
+    //                 cout<< it->price;
+    //                 cout<< it->qty;
+    //                 return;
+    //         }
+    //         else
+    //         {
+    //             cout<<"order not found!"<<endl;
+    //             return;
+    //         }
+    //     }
 
 
-    };
+    // };
 
     void PrintBook(){
         
-            for(auto i : buyorder)
+            for(auto pricelevel : buyorder)
             {
-                cout<<"Order ID : "<< i.O_ID <<" ";
-                cout<<"side : " <<i.side <<" ";
-                cout<<"qty : " <<i.qty <<" ";
-                cout<<"price : " <<i.price <<" "<<endl;
+        
+                cout <<"price level : "<<pricelevel.first<<"--> ";
+                for(auto j : pricelevel.second)
+                {
+                    cout<<"order id :"<<j.O_ID<<" ";
+                    cout<<"side : "<<j.side<<" ";
+                    cout<<"price : "<<j.price<<" ";
+                    cout<<"qty : "<<j.qty<<" "<<endl;
+                }
             }
         
-            for(auto i: sellorder)
+            for(auto pricelevel: sellorder)
             {
-                cout<<"Order ID : "<< i.O_ID <<" ";
-                cout<<"side : " <<i.side <<" ";
-                cout<<"qty : " <<i.qty <<" ";
-                cout<<"price : " <<i.price <<" "<<endl;
+
+                 cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
+                for(auto j : i.second)
+                {
+                    cout<<"order id :"<<j.O_ID<<" ";
+                    cout<<"side : "<<j.side<<" ";
+                    cout<<"price : "<<j.price<<" ";
+                    cout<<"qty : "<<j.qty<<" "<<endl;
+                }
             }
     };
 
