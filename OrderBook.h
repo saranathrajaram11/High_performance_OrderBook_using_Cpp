@@ -13,7 +13,7 @@ class OrderBook{
     vector<Order> buyorder;
     vector<Order> sellorder;
 
-    void addOrder(Order order)
+    void addorder(Order order)
     {
        if(order.side=="buy")
        {
@@ -25,9 +25,62 @@ class OrderBook{
         }
     };
 
-    void deletorder(Order order)
+    void deleteorder(int orderid)
     {
-        
+         
+        for(auto it = buyorder.begin(); it!=buyorder.end();++it)
+        {
+            if(orderid == it->O_ID)
+                {
+                    buyorder.erase(it);
+                }
+        }
+
+        for(auto it = sellorder.begin(); it!=sellorder.end();++it)
+        {
+            if(orderid== it->O_ID)
+            {
+                    sellorder.erase(it);
+            }
+        }
+    }
+        void PrintOrder(int orderid)
+        {
+            for(auto it = buyorder.begin(); it!=buyorder.end();++it)
+            {
+                if(orderid == it->O_ID)
+                {
+                    cout<< it->O_ID;
+                    cout<< it->side;
+                    cout<< it->price;
+                    cout<< it->qty;
+                    return ;
+                }
+                else
+                {
+                cout<<"order not found!"<<endl;
+                return;
+                 }
+            }
+
+        for(auto it = sellorder.begin(); it!=sellorder.end();++it)
+        {
+            if(orderid== it->O_ID)
+            {
+                    cout<< it->O_ID;
+                    cout<< it->side;
+                    cout<< it->price;
+                    cout<< it->qty;
+                    return;
+            }
+            else
+            {
+                cout<<"order not found!"<<endl;
+                return;
+            }
+        }
+
+
     };
 
     void PrintBook(){
