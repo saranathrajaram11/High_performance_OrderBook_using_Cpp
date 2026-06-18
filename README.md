@@ -1,0 +1,1 @@
+this repo is a project of developing low latency performance Limit order book for make better understanding of how each seconds is matters for the HFT firms.this aims to both learning and  hft firms approching
