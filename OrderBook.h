@@ -50,45 +50,50 @@ class OrderBook{
             }
         }
     }
-    }
-    //     void PrintOrder(int orderid)
-    //     {
-    //         for(auto it = buyorder.begin(); it!=buyorder.end();++it)
-    //         {
-    //             if(orderid == it->O_ID)
-    //             {
-    //                 cout<< it->O_ID;
-    //                 cout<< it->side;
-    //                 cout<< it->price;
-    //                 cout<< it->qty;
-    //                 return ;
-    //             }
-    //             else
-    //             {
-    //             cout<<"order not found!"<<endl;
-    //             return;
-    //              }
-    //         }
-
-    //     for(auto it = sellorder.begin(); it!=sellorder.end();++it)
-    //     {
-    //         if(orderid== it->O_ID)
-    //         {
-    //                 cout<< it->O_ID;
-    //                 cout<< it->side;
-    //                 cout<< it->price;
-    //                 cout<< it->qty;
-    //                 return;
-    //         }
-    //         else
-    //         {
-    //             cout<<"order not found!"<<endl;
-    //             return;
-    //         }
-    //     }
+    };
 
 
-    // };
+    void PrintOrder(int orderid)
+    {
+           for(auto &pricelevel : buyorder)
+        {
+            for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
+            {
+                    if(orderid==it->O_ID)
+                    {
+                    cout<< it->O_ID<<" ";
+                    cout<< it->side<<" ";
+                    cout<< it->price<<" ";
+                    cout<< it->qty<<" ";
+                    return ;
+                    }
+                    else{
+                        cout<<"order ID not found ! "<<endl;
+                        break;
+                    }
+            }
+        }
+        
+        for(auto &pricelevel :sellorder)
+        {
+        for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
+        {   
+            if(orderid== it->O_ID)
+            {
+                    cout<< it->O_ID <<" ";
+                    cout<< it->side<<" ";
+                    cout<< it->price<<" ";
+                    cout<< it->qty<<" ";
+                    return ;
+            }
+             else{
+                        cout<<"order ID not found ! "<<endl;
+                        break;
+                    }
+        }
+        }
+         
+    };
 
     void PrintBook(){
         

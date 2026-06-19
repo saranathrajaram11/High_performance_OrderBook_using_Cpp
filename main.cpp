@@ -40,13 +40,21 @@ int main()
             case 3:
             ob.PrintBook();
             break;
-            // case 4:
-            // cout <<"enter the order id :" <<" ";
-            // cin>> orderid;
-            // ob.PrintOrder(orderid);
+            
+            case 4:
+            cout <<"enter the order id :" <<" ";
+            cin>> orderid;
+            ob.PrintOrder(orderid);
+            break;
+
+            default:
+            cout <<"Invalid Operations!!!"<<endl;
+
+
+
         }
     }
      
 
     return 0;
-}
+}   

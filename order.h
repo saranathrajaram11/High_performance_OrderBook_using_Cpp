@@ -8,7 +8,7 @@ struct Order{
     string side;
     int qty;
     int price; 
-    chrono::system_clock::timepoint timestamp;
+    chrono::system_clock::time_point timestamp;
 };
 
 
