@@ -1,8 +1,7 @@
 #pragma once
-
 #include<iostream>
 #include<map>
-#include<vector>
+#include<queue>
 #include<algorithm>
 #include<chrono>
 #include<cstdint>
@@ -12,101 +11,77 @@ using namespace std;
 
 class OrderBook{
     public:
-  std::map<int,vector<Order>> buyorder;
-  std::map<int, vector<Order>> sellorder;
+  std::map<int,queue<Order>> buyorder;
+  std::map<int, queue<Order>> sellorder;
+  
 
     void addorder(Order order)
     {
        if(order.side=="buy")
        {
-        buyorder[order.price].push_back(order);
+        buyorder[order.price].push(order);
        }
         else if(order.side=="sell")
         {
-        sellorder[order.price].push_back(order);
+        sellorder[order.price].push(order);
         }
     };
 
     void deleteorder(int orderid)
     {
-         
-        for(auto &pricelevel : buyorder)
-        {
-            for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
+         for(auto pricelevel : buyorder)
             {
-                    if(orderid==it->O_ID)
-                    {
-                        pricelevel.second.erase(it);
-                        return ;
+                cout <<"price level : "<<pricelevel.first<<"--> ";
+                auto tempqueue = pricelevel.second;
+        
+                while(!tempqueue.empty())
+                {
+                    auto currentorder=tempqueue.front();
+                    if(orderid ==currentorder.O_ID){
+                    pricelevel.second.pop();
                     }
+                    return;
+                }
             }
-        }
-        for(auto &pricelevel :sellorder)
-        {
-        for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
-        {   
-            if(orderid== it->O_ID)
+        
+            for(auto &pricelevel: sellorder)
             {
-                    pricelevel.second.erase(it);
-                    return ;
+
+                 cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
+                 auto tempqueue =pricelevel.second;
+                while(!tempqueue.empty())
+                {
+                    auto currentorder=tempqueue.front();
+                    if(orderid ==currentorder.O_ID)
+                    {
+                    pricelevel.second.pop();
+                    }
+                    return;
+                }
             }
-        }
-    }
     };
 
 
     void PrintOrder(int orderid)
     {
-           for(auto &pricelevel : buyorder)
-        {
-            for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
-            {
-                    if(orderid==it->O_ID)
-                    {
-                    cout<< it->O_ID<<" ";
-                    cout<< it->side<<" ";
-                    cout<< it->price<<" ";
-                    cout<< it->qty<<" ";
-                    cout<<it->time <<" ";
-                    return ;
-                    }
-                    
-            }
-            
-        }
-        
-        for(auto &pricelevel :sellorder)
-        {
-        for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
-        {   
-            if(orderid== it->O_ID)
-            {
-                    cout<< it->O_ID <<" ";
-                    cout<< it->side<<" ";
-                    cout<< it->price<<" ";
-                    cout<< it->qty<<" ";
-                    cout<<it-> time<<" ";
-                    return ;
-            }
-             
-        }
-        }
-         
-    };
 
-    void PrintBook(){
-        
-            for(auto pricelevel : buyorder)
+    for(auto pricelevel : buyorder)
             {
-        
                 cout <<"price level : "<<pricelevel.first<<"--> ";
-                for(auto j : pricelevel.second)
+                auto tempqueue = pricelevel.second;
+        
+                while(!tempqueue.empty())
                 {
-                    cout<<"order id :"<<j.O_ID<<" ";
-                    cout<<"side : "<<j.side<<" ";
-                    cout<<"price : "<<j.price<<" ";
-                    cout<<"qty : "<<j.qty<<" ";
-                    cout<<"time : " <<j.time <<" "<<endl;
+                    auto currentorder=tempqueue.front();
+                    if(orderid ==currentorder.O_ID){
+                    cout<<"order id :"<<currentorder.O_ID<<" ";
+                    cout<<"side : "<<currentorder.side<<" ";
+                    cout<<"price : "<<currentorder.price<<" ";
+                    cout<<"qty : "<<currentorder.qty<<" ";
+                    cout<<"time : " <<currentorder.time <<" "<<endl;
+                    tempqueue.pop();
+                    }
+                    return;
                 }
             }
         
@@ -114,13 +89,57 @@ class OrderBook{
             {
 
                  cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
-                for(auto j : pricelevel.second)
+                 auto tempqueue =pricelevel.second;
+                while(!tempqueue.empty())
                 {
-                    cout<<"order id :"<<j.O_ID<<" ";
-                    cout<<"side : "<<j.side<<" ";
-                    cout<<"price : "<<j.price<<" ";
-                    cout<<"qty : "<<j.qty<<" ";
-                    cout<<"time : " <<j.time <<" "<<endl;
+                    auto currentorder=tempqueue.front();
+                    if(orderid ==currentorder.O_ID){
+                    cout<<"order id :"<<currentorder.O_ID<<" ";
+                    cout<<"side : "<<currentorder.side<<" ";
+                    cout<<"price : "<<currentorder.price<<" ";
+                    cout<<"qty : "<<currentorder.qty<<" ";
+                    cout<<"time : " <<currentorder.time <<" "<<endl;
+                    tempqueue.pop();
+                    }
+                    return;
+                }
+            }
+    };
+
+    void PrintBook(){
+        
+            for(auto pricelevel : buyorder)
+            {
+                cout <<"price level : "<<pricelevel.first<<"--> ";
+                auto tempqueue = pricelevel.second;
+        
+                while(!tempqueue.empty())
+                {
+                    auto currentorder=tempqueue.front();
+                    cout<<"order id :"<<currentorder.O_ID<<" ";
+                    cout<<"side : "<<currentorder.side<<" ";
+                    cout<<"price : "<<currentorder.price<<" ";
+                    cout<<"qty : "<<currentorder.qty<<" ";
+                    cout<<"time : " <<currentorder.time <<" "<<endl;
+                    tempqueue.pop();
+                    
+                }
+            }
+        
+            for(auto pricelevel: sellorder)
+            {
+
+                 cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
+                 auto tempqueue =pricelevel.second;
+                while(!tempqueue.empty())
+                {
+                    auto currentorder=tempqueue.front();
+                    cout<<"order id :"<<currentorder.O_ID<<" ";
+                    cout<<"side : "<<currentorder.side<<" ";
+                    cout<<"price : "<<currentorder.price<<" ";
+                    cout<<"qty : "<<currentorder.qty<<" ";
+                    cout<<"time : " <<currentorder.time <<" "<<endl;
+                    tempqueue.pop();
                 }
             }
     };
