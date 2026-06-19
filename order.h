@@ -1,5 +1,6 @@
 #include<iostream>
 #include <chrono>
+#include <cstdint>
 #pragma once
 using namespace std;
 
@@ -8,7 +9,7 @@ struct Order{
     string side;
     int qty;
     int price; 
-    chrono::system_clock::time_point timestamp;
+    uint64_t time;
 };
 
 
