@@ -27,18 +27,18 @@ int main()
             cin >>order.price;
             cout<<"qty : ";
             cin >>order.qty;
-            cout<<"time : system cpatured "<<endl;
+            cout<<"time : system captured "<<endl;
             order.time=chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now().time_since_epoch()).count();
             ob.addorder(order);
             cout<<"your order created successfully.."<<endl;
             break;
 
-            case 2:
-            cout <<"enter the order id :" <<" ";
-            cin>> orderid;
-            ob.deleteorder(orderid);
-            cout<<"your order deleted successfully.."<<endl;
-            break;
+            // case 2:
+            // cout <<"enter the order id :" <<" ";
+            // cin>> orderid;
+            // ob.deleteorder(orderid);
+            // cout<<"your order deleted successfully.."<<endl;
+            // break;
 
             case 3:
             ob.PrintBook();
