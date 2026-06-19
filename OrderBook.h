@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 class OrderBook{
     public:
   std::map<int,vector<Order>> buyorder;
@@ -26,25 +25,32 @@ class OrderBook{
         }
     };
 
-    // void deleteorder(int orderid)
-    // {
+    void deleteorder(int orderid)
+    {
          
-    //     for(auto it = buyorder.begin(); it!=buyorder.end();++it)
-    //     {
-    //         if(orderid == it->O_ID)
-    //             {
-    //                 buyorder.erase(it);
-    //             }
-    //     }
-
-    //     for(auto it = sellorder.begin(); it!=sellorder.end();++it)
-    //     {
-    //         if(orderid== it->O_ID)
-    //         {
-    //                 sellorder.erase(it);
-    //         }
-    //     }
-    // }
+        for(auto &pricelevel : buyorder)
+        {
+            for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
+            {
+                    if(orderid==it->O_ID)
+                    {
+                        pricelevel.second.erase(it);
+                        return ;
+                    }
+            }
+        }
+        for(auto &pricelevel :sellorder)
+        {
+        for(auto it = pricelevel.second.begin(); it!=pricelevel.second.end();++it)
+        {   
+            if(orderid== it->O_ID)
+            {
+                    pricelevel.second.erase(it);
+                    return ;
+            }
+        }
+    }
+    }
     //     void PrintOrder(int orderid)
     //     {
     //         for(auto it = buyorder.begin(); it!=buyorder.end();++it)
@@ -103,7 +109,7 @@ class OrderBook{
             {
 
                  cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
-                for(auto j : i.second)
+                for(auto j : pricelevel.second)
                 {
                     cout<<"order id :"<<j.O_ID<<" ";
                     cout<<"side : "<<j.side<<" ";
