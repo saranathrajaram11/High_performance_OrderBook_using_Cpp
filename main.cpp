@@ -1,4 +1,5 @@
 #include<iostream>
+#include<chrono>
 #include "order.h"
 #include "OrderBook.h"
 using namespace std;
@@ -26,6 +27,8 @@ int main()
             cin >>order.price;
             cout<<"qty : ";
             cin >>order.qty;
+            cout<<"time : system cpatured "<<endl;
+            order.time=chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now().time_since_epoch()).count();
             ob.addorder(order);
             cout<<"your order created successfully.."<<endl;
             break;
