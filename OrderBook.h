@@ -4,6 +4,8 @@
 #include<map>
 #include<vector>
 #include<algorithm>
+#include<chrono>
+#include<cstdint>
 #include "order.h"
 
 using namespace std;
@@ -11,7 +13,7 @@ using namespace std;
 class OrderBook{
     public:
   std::map<int,vector<Order>> buyorder;
-   std::map<int, vector<Order>> sellorder;
+  std::map<int, vector<Order>> sellorder;
 
     void addorder(Order order)
     {
@@ -65,13 +67,12 @@ class OrderBook{
                     cout<< it->side<<" ";
                     cout<< it->price<<" ";
                     cout<< it->qty<<" ";
+                    cout<<it->time <<" ";
                     return ;
                     }
-                    else{
-                        cout<<"order ID not found ! "<<endl;
-                        break;
-                    }
+                    
             }
+            
         }
         
         for(auto &pricelevel :sellorder)
@@ -84,12 +85,10 @@ class OrderBook{
                     cout<< it->side<<" ";
                     cout<< it->price<<" ";
                     cout<< it->qty<<" ";
+                    cout<<it-> time<<" ";
                     return ;
             }
-             else{
-                        cout<<"order ID not found ! "<<endl;
-                        break;
-                    }
+             
         }
         }
          
@@ -106,7 +105,8 @@ class OrderBook{
                     cout<<"order id :"<<j.O_ID<<" ";
                     cout<<"side : "<<j.side<<" ";
                     cout<<"price : "<<j.price<<" ";
-                    cout<<"qty : "<<j.qty<<" "<<endl;
+                    cout<<"qty : "<<j.qty<<" ";
+                    cout<<"time : " <<j.time <<" "<<endl;
                 }
             }
         
@@ -119,7 +119,8 @@ class OrderBook{
                     cout<<"order id :"<<j.O_ID<<" ";
                     cout<<"side : "<<j.side<<" ";
                     cout<<"price : "<<j.price<<" ";
-                    cout<<"qty : "<<j.qty<<" "<<endl;
+                    cout<<"qty : "<<j.qty<<" ";
+                    cout<<"time : " <<j.time <<" "<<endl;
                 }
             }
     };
