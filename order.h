@@ -1,4 +1,5 @@
 #include<iostream>
+#include <chrono>
 #pragma once
 using namespace std;
 
@@ -7,6 +8,7 @@ struct Order{
     string side;
     int qty;
     int price; 
+    chrono::system_clock::timepoint timestamp;
 };
 
 
