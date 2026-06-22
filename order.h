@@ -5,11 +5,11 @@
 using namespace std;
 
 struct Order{
-    int O_ID;
     string side;
+    uint64_t time;
+    int O_ID;
     int qty;
     int price; 
-    uint64_t time;
 };
 
 

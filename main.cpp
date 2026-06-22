@@ -33,31 +33,28 @@ int main()
             cout<<"your order created successfully.."<<endl;
             break;
 
-            // case 2:
-            // cout <<"enter the order id :" <<" ";
-            // cin>> orderid;
-            // ob.deleteorder(orderid);
-            // cout<<"your order deleted successfully.."<<endl;
-            // break;
-
-            case 3:
-            ob.PrintBook();
+            case 2:
+            cout <<"enter the order id :" <<" ";
+            cin>> orderid;
+            ob.deleteorder(orderid);
+            cout<<"your order deleted successfully.."<<endl;
             break;
             
-            case 4:
+            case 3:
             cout <<"enter the order id :" <<" ";
             cin>> orderid;
             ob.PrintOrder(orderid);
             break;
 
+            case 4:
+            ob.PrintBook();
+            break;                
+
             default:
             cout <<"Invalid Operations!!!"<<endl;
 
-
-
-        }
-    }
-     
+        } //end of swich
+    } //end of while 
 
     return 0;
-}   
+}   // end of main
