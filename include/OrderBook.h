@@ -13,7 +13,6 @@ class OrderBook{
     public:
   std::map<int,queue<Order>> buyorder;
   std::map<int, queue<Order>> sellorder;
-  
 
     void addorder(Order order)
     {
@@ -25,11 +24,11 @@ class OrderBook{
         {
         sellorder[order.price].push(order);
         }
-    };
+    }; //end of add order
 
     void deleteorder(int orderid)
     {
-         for(auto pricelevel : buyorder)
+         for(auto &pricelevel : buyorder)
             {
                 cout <<"price level : "<<pricelevel.first<<"--> ";
                 auto tempqueue = pricelevel.second;
@@ -59,13 +58,13 @@ class OrderBook{
                     return;
                 }
             }
-    };
+    }; // end of delete order
 
 
     void PrintOrder(int orderid)
     {
 
-    for(auto pricelevel : buyorder)
+    for(auto &pricelevel : buyorder)
             {
                 cout <<"price level : "<<pricelevel.first<<"--> ";
                 auto tempqueue = pricelevel.second;
@@ -73,19 +72,20 @@ class OrderBook{
                 while(!tempqueue.empty())
                 {
                     auto currentorder=tempqueue.front();
-                    if(orderid ==currentorder.O_ID){
+                    if(orderid ==currentorder.O_ID)
+                    {
                     cout<<"order id :"<<currentorder.O_ID<<" ";
                     cout<<"side : "<<currentorder.side<<" ";
                     cout<<"price : "<<currentorder.price<<" ";
                     cout<<"qty : "<<currentorder.qty<<" ";
                     cout<<"time : " <<currentorder.time <<" "<<endl;
-                    tempqueue.pop();
-                    }
                     return;
+                    }
+                tempqueue.pop();
                 }
             }
         
-            for(auto pricelevel: sellorder)
+            for(auto &pricelevel: sellorder)
             {
 
                  cout <<"price level : "<<pricelevel.first<<"--> "<<endl;
@@ -93,18 +93,20 @@ class OrderBook{
                 while(!tempqueue.empty())
                 {
                     auto currentorder=tempqueue.front();
-                    if(orderid ==currentorder.O_ID){
+                    if(orderid ==currentorder.O_ID)
+                    {
                     cout<<"order id :"<<currentorder.O_ID<<" ";
                     cout<<"side : "<<currentorder.side<<" ";
                     cout<<"price : "<<currentorder.price<<" ";
                     cout<<"qty : "<<currentorder.qty<<" ";
                     cout<<"time : " <<currentorder.time <<" "<<endl;
-                    tempqueue.pop();
+                    return ;
                     }
-                    return;
+                tempqueue.pop();
+                    
                 }
             }
-    };
+    }; //end of printorder
 
     void PrintBook(){
         
@@ -142,6 +144,6 @@ class OrderBook{
                     tempqueue.pop();
                 }
             }
-    };
+    }; // end of printbook
 
 };

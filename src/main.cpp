@@ -4,7 +4,6 @@
 #include "OrderBook.h"
 using namespace std;
 
-
 OrderBook ob;
 Order order;
 int orderid,op;
