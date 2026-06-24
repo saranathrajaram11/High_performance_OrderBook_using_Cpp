@@ -1,0 +1,3 @@
+/mnt/e/Os_proj/Limit_order_book/build/CMakeFiles/Limit_order_book.dir
+/mnt/e/Os_proj/Limit_order_book/build/CMakeFiles/edit_cache.dir
+/mnt/e/Os_proj/Limit_order_book/build/CMakeFiles/rebuild_cache.dir

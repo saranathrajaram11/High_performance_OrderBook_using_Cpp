@@ -1,10 +1,18 @@
 #pragma once
 #include<iostream>
-
+#include "order.h"
+#include "OrderBook.h"
 using namespace std;
 
-class MatchEngineOrder{
+class MatchEngine{
+    private:
+    OrderBook &book;
+    
     public:
+    MatchEngine(OrderBook &book) :book(book){};
+    void processorder(Order order);
+    void matchbuy(Order order);
+    void matchsell(Order order);
     
 
 };
