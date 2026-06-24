@@ -11,7 +11,7 @@ using namespace std;
 
 class OrderBook{
     public:
-  std::map<int,queue<Order>> buyorder;
+  std::map<int,queue<Order>,std::greater<int>> buyorder;
   std::map<int, queue<Order>> sellorder;
 
     void addorder(Order order)
