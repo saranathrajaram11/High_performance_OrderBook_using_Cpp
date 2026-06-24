@@ -13,15 +13,13 @@ void  MatchEngine::processorder(Order order)
 
 }; //end of processorder
 
- void MatchEngine::matchbuy(Order sellorder)
+ void MatchEngine::matchbuy(Order buyorder)
 {
-    if(book.buyorder.empty())
-        book.sellorder[sellorder.price].push(sellorder);
-        return; 
+    
 }; //end of matchbuy
 
 
-void MatchEngine::matchsell(Order sell)
+void MatchEngine::matchsell(Order sellorder)
 {
 
 };//end of matchsell
