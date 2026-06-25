@@ -2,10 +2,12 @@
 #include<chrono>
 #include "../include/order.h"
 #include "../include/OrderBook.h"
+#include "../include/MatchingEngine.h"
 using namespace std;
 
 OrderBook ob;
 Order order;
+MatchEngine engine(ob);
 int orderid,op;
 
 int main()
@@ -28,7 +30,14 @@ int main()
             cin >>order.qty;
             cout<<"time : system captured "<<endl;
             order.time=chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now().time_since_epoch()).count();
-            ob.addorder(order);
+            if (order.side == "buy")
+            {
+                engine.matchbuy(order);
+            }
+            else
+            {
+                ob.addorder(order);
+            }
             cout<<"your order created successfully.."<<endl;
             break;
 
@@ -47,7 +56,7 @@ int main()
 
             case 4:
             ob.PrintBook();
-            break;                
+            break;
 
             default:
             cout <<"Invalid Operations!!!"<<endl;

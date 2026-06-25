@@ -6,9 +6,6 @@
 #include<iostream>
 using namespace std;
 
-
-OrderBook ob;
-
 void  MatchEngine::processorder(Order order)
 {
 
@@ -26,7 +23,7 @@ void  MatchEngine::processorder(Order order)
         auto sell_it = book.sellorder.begin();
         if(incomingbuy.price>=sell_it->first) // comparing of price of incomingbuy with sells.first(pricelevel)
         {
-            cout<<"trade happended";
+            cout<<"trade happended"<<endl;
             Order &current=sell_it->second.front(); //access of orderof sell for qty match
             if(current.qty>incomingbuy.qty){ // if sellqty is bigger then match with incoming.qty
                 current.qty-=incomingbuy.qty;  //reduce the qty of current oder and update on original book
