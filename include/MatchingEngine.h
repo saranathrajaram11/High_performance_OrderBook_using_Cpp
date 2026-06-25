@@ -11,8 +11,8 @@ class MatchEngine{
     public:
     MatchEngine(OrderBook &book) :book(book){};
     void processorder(Order order);
-    void matchbuy(Order order);
-    void matchsell(Order order);
+    void matchbuy(Order buyorder);
+    void matchsell(Order sellorder);
     
 
 };

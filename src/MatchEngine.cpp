@@ -4,9 +4,10 @@
 #include "../include/OrderBook.h"
 //must included headers
 #include<iostream>
-
 using namespace std;
 
+
+OrderBook ob;
 
 void  MatchEngine::processorder(Order order)
 {
@@ -15,7 +16,16 @@ void  MatchEngine::processorder(Order order)
 
  void MatchEngine::matchbuy(Order buyorder)
 {
-    
+    if(book.sellorder.empty())
+    {
+        book.addorder(buyorder);
+        return;
+    } 
+    else
+    {
+        
+    }
+
 }; //end of matchbuy
 
 
